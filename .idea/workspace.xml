@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+  </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4cb3f3e1-0f11-4fcc-bd09-840b7de746bf" name="Changes" comment="Debug de carga txt">
+      <change afterPath="$PROJECT_DIR$/Fase 3/estudiantes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fase 3/libros.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fase 3/prestamos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase 3/Biblioteca.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Fase 3/Biblioteca.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase 3/biblioteca.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Fase 3/biblioteca.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase 3/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Fase 3/main.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Spinal23&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Spinal23/Reto-3-Dise-o-de-base-de-datos.git&quot;,
+    &quot;accountId&quot;: &quot;a8110639-0a11-47b0-b182-3ee8da095722&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="33TmNvjJAqvsRlzMlshP2bmiYA8" />
+  <component name="ProjectStatusUIService">{
+  &quot;uiKindId&quot;: &quot;Widget&quot;
+}</component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C/C++ File.main.cpp (1).executor": "Run",
+    "C/C++ File.main.cpp.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\leand\Downloads\db2" />
+      <recent name="C:\Users\leand\Downloads\db2\Fase 3" />
+    </key>
+  </component>
+  <component name="RunManager" selected="C/C++ File.main.cpp (1)">
+    <configuration name="main.cpp (1)" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="db2" TARGET_NAME="main.cpp" CONFIG_NAME="main.cpp">
+      <option name="sourceFile" value="Fase 3\main.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main.cpp" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="db2" TARGET_NAME="main.cpp" CONFIG_NAME="main.cpp">
+      <option name="sourceFile" value="main.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="C/C++ File.main.cpp (1)" />
+        <item itemvalue="C/C++ File.main.cpp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4cb3f3e1-0f11-4fcc-bd09-840b7de746bf" name="Changes" comment="" />
+      <created>1759349402796</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1759349402796</updated>
+      <workItem from="1759349404342" duration="3465000" />
+      <workItem from="1759371179162" duration="5555000" />
+    </task>
+    <task id="LOCAL-00001" summary="&quot;Prueba 1&quot;">
+      <option name="closed" value="true" />
+      <created>1759349799000</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759349799000</updated>
+    </task>
+    <task id="LOCAL-00002" summary="&quot;Prueba 2 y migracion a carpeta&quot;">
+      <option name="closed" value="true" />
+      <created>1759350084082</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759350084082</updated>
+    </task>
+    <task id="LOCAL-00003" summary="&quot;Prueba 3&quot;">
+      <option name="closed" value="true" />
+      <created>1759352731023</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1759352731023</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Codigo Etapa pre final">
+      <option name="closed" value="true" />
+      <created>1759375133439</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759375133439</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Codigo Etapa pre final v2">
+      <option name="closed" value="true" />
+      <created>1759375346836</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1759375346836</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Re añadir el README">
+      <option name="closed" value="true" />
+      <created>1759375487819</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1759375487819</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Debug de carga txt">
+      <option name="closed" value="true" />
+      <created>1759375823714</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1759375823714</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;Prueba 1&quot;" />
+    <MESSAGE value="&quot;Prueba 2 y migracion a carpeta&quot;" />
+    <MESSAGE value="&quot;Prueba 3&quot;" />
+    <MESSAGE value="Codigo Etapa pre final" />
+    <MESSAGE value="Codigo Etapa pre final v2" />
+    <MESSAGE value="Re añadir el README" />
+    <MESSAGE value="Debug de carga txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug de carga txt" />
+  </component>
+</project>

@@ -1,6 +1,45 @@
 #include "Biblioteca.h"
 #include <stdexcept>  // Para try-catch en stoi
 
+// Helper para quitar comillas y limpiar espacios
+string quitarComillas(const string& campo) {
+    string resultado = campo;
+    // Quita espacios al inicio y final
+    size_t start = resultado.find_first_not_of(" \t");
+    size_t end = resultado.find_last_not_of(" \t");
+    if (start == string::npos) return "";
+    resultado = resultado.substr(start, end - start + 1);
+    // Quita comillas si existen
+    if (resultado.size() >= 2 && resultado.front() == '"' && resultado.back() == '"') {
+        return resultado.substr(1, resultado.size() - 2);
+    }
+    return resultado;
+}
+
+// Helper para parsear linea CSV con comillas
+vector<string> parsearCSV(const string& linea) {
+    vector<string> campos;
+    string campo;
+    bool enComillas = false;
+    for (size_t i = 0; i < linea.size(); ++i) {
+        char c = linea[i];
+        if (c == '"') {
+            enComillas = !enComillas;
+            continue;
+        }
+        if (c == ',' && !enComillas) {
+            campos.push_back(quitarComillas(campo));
+            campo.clear();
+            continue;
+        }
+        campo += c;
+    }
+    if (!campo.empty()) {
+        campos.push_back(quitarComillas(campo));
+    }
+    return campos;
+}
+
 // Chequea si ID autor ya esta
 bool idDuplicado(const vector<Autor>& autores, int id) {
     for (const auto& a : autores) {
@@ -105,27 +144,27 @@ void guardarAutores(const vector<Autor>& autores) {
 void cargarAutores(vector<Autor>& autores) {
     ifstream archivo("autores.txt");
     if (!archivo.is_open()) {
-        cout << "Archivo autores.txt no encontrado, vector vacio.\n";  // Debug temporal
         return;
     }
     string linea;
     autores.clear();  // Limpia vector antes de cargar
     while (getline(archivo, linea)) {
         if (linea.empty()) continue;  // Salta lineas vacias
-        stringstream ss(linea);
-        Autor autor;
-        string temp;
+        vector<string> campos = parsearCSV(linea);
+        if (campos.size() != 2) {
+            cout << "Error en linea: " << linea << " - Numero de campos invalido.\n";
+            continue;
+        }
         try {
-            getline(ss, temp, ',');
-            autor.id_autor = stoi(temp);
-            getline(ss, autor.nombre);
+            Autor autor;
+            autor.id_autor = stoi(campos[0]);
+            autor.nombre = campos[1];
             autores.push_back(autor);
         } catch (const exception& e) {
-            cout << "Error en linea: " << linea << " - Formato invalido.\n";  // Manejo error
+            cout << "Error en linea: " << linea << " - Formato invalido.\n";
         }
     }
     archivo.close();
-    cout << "Cargados " << autores.size() << " autores.\n";  // Debug temporal
 }
 
 // Borra autor si no tiene libros
@@ -179,7 +218,7 @@ void editarLibro(vector<Libro>& libros, int id_libro) {
     cout << "Libro no encontrado.\n";
 }
 
-// Muestra todos los libros
+// Muestra todos los libros, o mensaje si vacio
 void listarLibros(const vector<Libro>& libros) {
     if (libros.empty()) {
         cout << "No hay libros registrados.\n";
@@ -191,35 +230,43 @@ void listarLibros(const vector<Libro>& libros) {
     }
 }
 
-// Guarda libros en archivo txt
+// Guarda libros en archivo txt, con comillas
 void guardarLibros(const vector<Libro>& libros) {
     ofstream archivo("libros.txt");
     for (const auto& libro : libros) {
-        archivo << libro.id_libro << "," << libro.titulo << "," << libro.anio_publicacion
-                << "," << libro.id_autor << "," << libro.estado << "," << libro.stock_total << endl;
+        archivo << libro.id_libro << ",\"" << libro.titulo << "\"," << libro.anio_publicacion
+                << "," << libro.id_autor << ",\"" << libro.estado << "\"," << libro.stock_total << endl;
     }
     archivo.close();
 }
 
-// Carga libros desde archivo txt
+// Carga libros desde archivo txt, con chequeos y comillas
 void cargarLibros(vector<Libro>& libros) {
     ifstream archivo("libros.txt");
+    if (!archivo.is_open()) {
+        return;
+    }
     string linea;
+    libros.clear();  // Limpia vector antes de cargar
     while (getline(archivo, linea)) {
-        stringstream ss(linea);
-        Libro libro;
-        string temp;
-        getline(ss, temp, ',');
-        libro.id_libro = stoi(temp);
-        getline(ss, libro.titulo, ',');
-        getline(ss, temp, ',');
-        libro.anio_publicacion = stoi(temp);
-        getline(ss, temp, ',');
-        libro.id_autor = stoi(temp);
-        getline(ss, libro.estado, ',');
-        getline(ss, temp);
-        libro.stock_total = stoi(temp);
-        libros.push_back(libro);
+        if (linea.empty()) continue;  // Salta lineas vacias
+        vector<string> campos = parsearCSV(linea);
+        if (campos.size() != 6) {
+            cout << "Error en linea: " << linea << " - Numero de campos invalido.\n";
+            continue;
+        }
+        try {
+            Libro libro;
+            libro.id_libro = stoi(campos[0]);
+            libro.titulo = campos[1];
+            libro.anio_publicacion = stoi(campos[2]);
+            libro.id_autor = stoi(campos[3]);
+            libro.estado = campos[4];
+            libro.stock_total = stoi(campos[5]);
+            libros.push_back(libro);
+        } catch (const exception& e) {
+            cout << "Error en linea: " << linea << " - Formato invalido.\n";
+        }
     }
     archivo.close();
 }
@@ -269,7 +316,7 @@ void editarEstudiante(vector<Estudiante>& estudiantes, int id_estudiante) {
     cout << "Estudiante no encontrado.\n";
 }
 
-// Muestra todos los estudiantes
+// Muestra todos los estudiantes, o mensaje si vacio
 void listarEstudiantes(const vector<Estudiante>& estudiantes) {
     if (estudiantes.empty()) {
         cout << "No hay estudiantes registrados.\n";
@@ -281,28 +328,39 @@ void listarEstudiantes(const vector<Estudiante>& estudiantes) {
     }
 }
 
-// Guarda estudiantes en archivo txt
+// Guarda estudiantes en archivo txt, con comillas
 void guardarEstudiantes(const vector<Estudiante>& estudiantes) {
     ofstream archivo("estudiantes.txt");
     for (const auto& estudiante : estudiantes) {
-        archivo << estudiante.id_estudiante << "," << estudiante.nombre << "," << estudiante.carnet << endl;
+        archivo << estudiante.id_estudiante << ",\"" << estudiante.nombre << "\",\"" << estudiante.carnet << "\"" << endl;
     }
     archivo.close();
 }
 
-// Carga estudiantes desde archivo txt
+// Carga estudiantes desde archivo txt, con chequeos y comillas
 void cargarEstudiantes(vector<Estudiante>& estudiantes) {
     ifstream archivo("estudiantes.txt");
+    if (!archivo.is_open()) {
+        return;
+    }
     string linea;
+    estudiantes.clear();  // Limpia vector antes de cargar
     while (getline(archivo, linea)) {
-        stringstream ss(linea);
-        Estudiante est;
-        string temp;
-        getline(ss, temp, ',');
-        est.id_estudiante = stoi(temp);
-        getline(ss, est.nombre, ',');
-        getline(ss, est.carnet);
-        estudiantes.push_back(est);
+        if (linea.empty()) continue;  // Salta lineas vacias
+        vector<string> campos = parsearCSV(linea);
+        if (campos.size() != 3) {
+            cout << "Error en linea: " << linea << " - Numero de campos invalido.\n";
+            continue;
+        }
+        try {
+            Estudiante est;
+            est.id_estudiante = stoi(campos[0]);
+            est.nombre = campos[1];
+            est.carnet = campos[2];
+            estudiantes.push_back(est);
+        } catch (const exception& e) {
+            cout << "Error en linea: " << linea << " - Formato invalido.\n";
+        }
     }
     archivo.close();
 }
@@ -358,7 +416,7 @@ void agregarPrestamo(vector<Prestamo>& prestamos, vector<Libro>& libros, vector<
     }
 }
 
-// Muestra todos los prestamos
+// Muestra todos los prestamos, o mensaje si vacio
 void listarPrestamos(const vector<Prestamo>& prestamos) {
     if (prestamos.empty()) {
         cout << "No hay prestamos registrados.\n";
@@ -371,34 +429,44 @@ void listarPrestamos(const vector<Prestamo>& prestamos) {
     }
 }
 
-// Guarda prestamos en archivo txt
+// Guarda prestamos en archivo txt, con comillas
 void guardarPrestamos(const vector<Prestamo>& prestamos) {
     ofstream archivo("prestamos.txt");
     for (const auto& prestamo : prestamos) {
         archivo << prestamo.id_prestamo << "," << prestamo.id_libro << "," << prestamo.id_estudiante
-                << "," << prestamo.fecha_prestamo << "," << prestamo.fecha_limite << "," << prestamo.fecha_devolucion << endl;
+                << ",\"" << prestamo.fecha_prestamo << "\",\"" << prestamo.fecha_limite << "\",\""
+                << prestamo.fecha_devolucion << "\"" << endl;
     }
     archivo.close();
 }
 
-// Carga prestamos desde archivo txt
+// Carga prestamos desde archivo txt, con chequeos
 void cargarPrestamos(vector<Prestamo>& prestamos) {
     ifstream archivo("prestamos.txt");
+    if (!archivo.is_open()) {
+        return;
+    }
     string linea;
+    prestamos.clear();  // Limpia vector antes de cargar
     while (getline(archivo, linea)) {
-        stringstream ss(linea);
-        Prestamo prestamo;
-        string temp;
-        getline(ss, temp, ',');
-        prestamo.id_prestamo = stoi(temp);
-        getline(ss, temp, ',');
-        prestamo.id_libro = stoi(temp);
-        getline(ss, temp, ',');
-        prestamo.id_estudiante = stoi(temp);
-        getline(ss, prestamo.fecha_prestamo, ',');
-        getline(ss, prestamo.fecha_limite, ',');
-        getline(ss, prestamo.fecha_devolucion);
-        prestamos.push_back(prestamo);
+        if (linea.empty()) continue;  // Salta lineas vacias
+        vector<string> campos = parsearCSV(linea);
+        if (campos.size() != 6) {
+            cout << "Error en linea: " << linea << " - Numero de campos invalido.\n";
+            continue;
+        }
+        try {
+            Prestamo prestamo;
+            prestamo.id_prestamo = stoi(campos[0]);
+            prestamo.id_libro = stoi(campos[1]);
+            prestamo.id_estudiante = stoi(campos[2]);
+            prestamo.fecha_prestamo = campos[3];
+            prestamo.fecha_limite = campos[4];
+            prestamo.fecha_devolucion = campos[5];
+            prestamos.push_back(prestamo);
+        } catch (const exception& e) {
+            cout << "Error en linea: " << linea << " - Formato invalido.\n";
+        }
     }
     archivo.close();
 }
