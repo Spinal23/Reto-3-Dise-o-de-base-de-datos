@@ -24,9 +24,7 @@ int main() {
     vector<Prestamo> prestamos;
 
     // Carga datos al empezar
-    cout << "Debug: Intentando cargar autores...\n";  // Debug temporal
     cargarAutores(autores);
-    cout << "Debug: Cargados " << autores.size() << " autores.\n";  // Debug temporal
     cargarLibros(libros);
     cargarEstudiantes(estudiantes);
     cargarPrestamos(prestamos);
@@ -67,7 +65,6 @@ int main() {
             }
             case 2:
                 // Muestra todos los autores
-                cout << "Debug: Vector autores tiene " << autores.size() << " elementos.\n";  // Debug temporal
                 listarAutores(autores);
                 break;
             case 3:
